@@ -7,7 +7,7 @@ pipeline:
 
   update-node:
     image: no-cloud.fr/eve/docker
-    base_image: node
+    base_image: library/node
     tag: 6
     variable: FROM_DIGEST
 
