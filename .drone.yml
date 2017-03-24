@@ -1,0 +1,28 @@
+pipeline:
+
+  clone:
+    image: no-cloud.fr/eve
+    action: clone
+    git_branch: ${BRANCH}
+
+  update-node:
+    image: no-cloud.fr/eve/docker
+    base_image: node
+    tag: 6
+    variable: FROM_DIGEST
+
+  update-kaiwa:
+    image: no-cloud.fr/eve/git
+    repository: https://github.com/ForNeVeR/kaiwa.git
+    branch: ${BRANCH}
+    variable: KAIWA_VERSION
+
+  deploy:
+    image: no-cloud.fr/eve
+    git_user: ${GIT_USER}
+    git_password: ${GIT_PASSWORD}
+
+matrix:
+  BRANCH:
+    - master
+    - develop
